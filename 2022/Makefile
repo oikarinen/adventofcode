@@ -30,3 +30,8 @@ reformat: venv
 	$(PYTHON) -m isort --atomic $(PYTHON_DIRS)
 	$(PYTHON) -m yapf --parallel --recursive --in-place $(PYTHON_DIRS)
 	#$(PYTHON) -m black $(PYTHON_DIRS)
+
+.PHONY: tests
+tests: venv
+	$(PYTHON) -m pytest -s --tb=short tests
+

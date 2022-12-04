@@ -2,5 +2,6 @@ flake8
 isort
 pep8
 pylint
+pytest
 yapf
 requests

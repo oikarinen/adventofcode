@@ -4,29 +4,9 @@
 import heapq
 from functools import reduce
 
-import requests
-from requests.adapters import HTTPAdapter, Retry
+from aoc.common.utils import get_file
 
 URL = "https://adventofcode.com/2022/day/1/input"
-
-
-def get_file_url(url, headers):
-    """Read file from URL."""
-    session = requests.Session()
-    retries = Retry(total=5,
-                    backoff_factor=0.1,
-                    status_forcelist=[500, 502, 503, 504])
-    session.mount("http://", HTTPAdapter(max_retries=retries))
-    result = session.get(url, headers=headers)
-    if result.status_code != 200:
-        raise Exception(f"Failed to fetch {url}: {result.status_code}")
-    return result.text
-
-
-def get_file(file_name):
-    """Read file from disk."""
-    with open(file_name, encoding="utf8") as f:
-        return f.read()
 
 
 def process_result(text):
@@ -44,6 +24,7 @@ def process_result(text):
 
 def main():
     """Main."""
+    print("Day 1")
     # headers = {"cookie": "session=XXX"}
     # result = get_file(URL, headers)
     result = get_file("1/input")
