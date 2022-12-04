@@ -1,0 +1,9 @@
+.venv/
+Pipfile*
+/.cache/
+*.pyc
+*~
+/aoc.egg-info/
+__pycache__/
+.mypy_cache/
+venv
