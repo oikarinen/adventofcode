@@ -4,6 +4,9 @@
 
 from setuptools import setup
 
+with open("requirements.txt", "r", encoding="utf8") as f:
+    requirements = f.read().splitlines()
+
 setup(
     name="aoc",
     version="0.1",
@@ -16,12 +19,5 @@ setup(
             "main = aoc.main:main",
         ],
     },
-    install_requires=[
-        "flake8",
-        "isort",
-        "pep8",
-        "pylint",
-        "yapf",
-        "requests",
-    ],
+    install_requires=requirements,
 )

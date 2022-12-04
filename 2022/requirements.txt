@@ -1,0 +1,6 @@
+flake8
+isort
+pep8
+pylint
+yapf
+requests
