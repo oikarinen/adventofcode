@@ -15,15 +15,19 @@ clean:
 	rm -fr venv aoc.egg-info
 
 .PHONY: static
-static: pylint flake8
-
-.PHONY: pylint
-pylint: venv
-	$(PYTHON) -m pylint --rcfile .pylintrc *.py aoc/*.py
+static: flake8 pylint mypy
 
 .PHONY: flake8
 flake8: venv
 	$(PYTHON) -m flake8 --config .flake8 *.py aoc/*.py
+
+.PHONY: mypy
+mypy: venv
+	$(PYTHON) -m mypy *.py aoc/*.py
+
+.PHONY: pylint
+pylint: venv
+	$(PYTHON) -m pylint --rcfile .pylintrc *.py aoc/*.py
 
 .PHONY: reformat
 reformat: venv

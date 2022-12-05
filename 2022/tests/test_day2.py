@@ -5,7 +5,7 @@ import aoc.day2
 from aoc.day2 import RockPaperScissors, Round, RPSResult
 
 
-def test_get_rps_score():
+def test_get_rps_score() -> None:
     rules = [
         Round(RockPaperScissors.ROCK, RockPaperScissors.ROCK, RPSResult.DRAW),
         Round(RockPaperScissors.ROCK, RockPaperScissors.PAPER, RPSResult.WIN),
@@ -27,7 +27,7 @@ def test_get_rps_score():
         assert aoc.day2.get_rps_score(row.opponent, row.player) == row.result
 
 
-def test_parse_line():
+def test_parse_line() -> None:
     lines = [
         ("A Y",
          Round(RockPaperScissors.ROCK, RockPaperScissors.PAPER,
@@ -43,19 +43,19 @@ def test_parse_line():
         assert aoc.day2.parse_line(line, "part1")
 
 
-def test_process_result_part1():
+def test_process_result_part1() -> None:
     text = """A Y
 B X
 C Z"""
     result = aoc.day2.process_result(text, "part1")
     assert sum(r["score"] for r in result) == 15
-    assert [r["score"] for r in result] == [8, 1, 6]
+    assert [r["score"] for r in result], [8, 1, 6]
 
 
-def test_process_result_part2():
+def test_process_result_part2() -> None:
     text = """A Y
 B X
 C Z"""
     result = aoc.day2.process_result(text, "part2")
     assert sum(r["score"] for r in result) == 12
-    assert [r["score"] for r in result] == [4, 1, 7]
+    assert [r["score"] for r in result], [4, 1, 7]

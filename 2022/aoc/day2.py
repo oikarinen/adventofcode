@@ -3,6 +3,7 @@
 
 from collections import namedtuple
 from enum import Enum
+from typing import Any, Dict, List
 
 from aoc.common.utils import get_file
 
@@ -24,7 +25,8 @@ class RPSResult(Enum):
 Round = namedtuple("Round", "opponent player result")
 
 
-def get_rps_score(opponent, player):
+def get_rps_score(opponent: RockPaperScissors,
+                  player: RockPaperScissors) -> RPSResult:
     """Calculate RPS score for a round."""
     if player.value == opponent.value:
         return RPSResult.DRAW
@@ -35,7 +37,7 @@ def get_rps_score(opponent, player):
     return RPSResult.LOST
 
 
-def _parse_opponent_move(line):
+def _parse_opponent_move(line: str) -> RockPaperScissors:
     """A for Rock, B for Paper, and C for Scissors."""
     if line[0] == "A":
         return RockPaperScissors.ROCK
@@ -46,7 +48,7 @@ def _parse_opponent_move(line):
     raise Exception(f"Unknown opponent selection: {line}")
 
 
-def _parse_player_move(line):
+def _parse_player_move(line: str) -> RockPaperScissors:
     """X for Rock, Y for Paper, and Z for Scissors."""
     if line[2] == "X":
         return RockPaperScissors.ROCK
@@ -57,7 +59,8 @@ def _parse_player_move(line):
     raise Exception(f"Unknown player selection: {line}")
 
 
-def _parse_result_move(opponent, line):
+def _parse_result_move(opponent: RockPaperScissors,
+                       line: str) -> RockPaperScissors:
     """X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win."""
     if line[2] == "X":
         return [
@@ -77,7 +80,7 @@ def _parse_result_move(opponent, line):
     raise Exception(f"Unknown player selection: {line}")
 
 
-def parse_line(line, strategy):
+def parse_line(line: str, strategy: str) -> Round:
     """Parse strategy for a single line."""
     opponent = _parse_opponent_move(line)
     if strategy == "part1":
@@ -88,7 +91,7 @@ def parse_line(line, strategy):
     return Round(opponent, player, get_rps_score(opponent, player))
 
 
-def process_result(text, strategy):
+def process_result(text: str, strategy: str) -> List[Dict[str, Any]]:
     """Process strategy guide as string and return list of elves."""
     result = []
     for line in iter(text.splitlines()):
@@ -97,7 +100,7 @@ def process_result(text, strategy):
     return result
 
 
-def main():
+def main() -> None:
     """Main."""
     print("Day 2")
     strategy = get_file("2/input")

@@ -2,7 +2,7 @@
 """Setup module for Advent of Code 2022."""
 
 
-from setuptools import setup
+from setuptools import find_packages, setup  # type: ignore
 
 with open("requirements.txt", "r", encoding="utf8") as f:
     requirements = f.read().splitlines()
@@ -13,7 +13,8 @@ setup(
     description="Advent of Code 2022",
     author="Tapio",
     url="https://github.com/oikarinen/adventofcode",
-    packages=["aoc"],
+    packages=find_packages(exclude=["tests"]),
+    package_data={"aoc": ["py.typed"]},
     entry_points={
         "console_scripts": [
             "main = aoc.main:main",
