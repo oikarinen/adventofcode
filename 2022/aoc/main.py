@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Main module for Advent of Code 2022."""
 
-from aoc import day1, day2, day3
+from aoc import day1, day2, day3, day4
 
 
 def main() -> None:
@@ -11,6 +11,8 @@ def main() -> None:
     day2.main()
     print()
     day3.main()
+    print()
+    day4.main()
     print()
 
 
