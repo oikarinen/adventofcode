@@ -3,16 +3,17 @@
 
 import heapq
 from functools import reduce
+from typing import Any, Dict, List
 
 from aoc.common.utils import get_file
 
 URL = "https://adventofcode.com/2022/day/1/input"
 
 
-def process_result(text):
+def process_result(text: str) -> List[Dict[str, Any]]:
     """Process string and return list of elves."""
     result = []
-    items = []
+    items: List[int] = []
     for line in iter(text.splitlines()):
         if line == "":
             result.append({"items": items, "total": sum(items)})
@@ -22,7 +23,7 @@ def process_result(text):
     return result
 
 
-def main():
+def main() -> None:
     """Main."""
     print("Day 1")
     # headers = {"cookie": "session=XXX"}
@@ -34,7 +35,7 @@ def main():
     print(elf["total"])
     print("Part 2:")
     top3 = sum(elf['total']
-               for elf in heapq.nlargest(3, elves, key=lambda x: x['total']))
+               for elf in heapq.nlargest(3, elves, key=lambda x: x["total"]))
     print(top3)
 
 
