@@ -8,15 +8,15 @@ from typing import Any, Dict, List
 from aoc.common.utils import get_file
 
 
-class RockPaperScissors(Enum):
-    """RPS option."""
+class RPS(Enum):
+    """Rock, Paper, Scissors option."""
     ROCK = 1
     PAPER = 2
     SCISSORS = 3
 
 
 class RPSResult(Enum):
-    """RPS result."""
+    """Rock, Paper, Scissors result."""
     LOST = 0
     DRAW = 3
     WIN = 6
@@ -25,56 +25,54 @@ class RPSResult(Enum):
 Round = namedtuple("Round", "opponent player result")
 
 
-def get_rps_score(opponent: RockPaperScissors,
-                  player: RockPaperScissors) -> RPSResult:
+def get_rps_score(opponent: RPS, player: RPS) -> RPSResult:
     """Calculate RPS score for a round."""
     if player.value == opponent.value:
         return RPSResult.DRAW
     if player.value == (opponent.value + 1):
         return RPSResult.WIN
-    if player == RockPaperScissors.ROCK and opponent == RockPaperScissors.SCISSORS:
+    if player == RPS.ROCK and opponent == RPS.SCISSORS:
         return RPSResult.WIN
     return RPSResult.LOST
 
 
-def _parse_opponent_move(line: str) -> RockPaperScissors:
+def _parse_opponent_move(line: str) -> RPS:
     """A for Rock, B for Paper, and C for Scissors."""
     if line[0] == "A":
-        return RockPaperScissors.ROCK
+        return RPS.ROCK
     if line[0] == "B":
-        return RockPaperScissors.PAPER
+        return RPS.PAPER
     if line[0] == "C":
-        return RockPaperScissors.SCISSORS
+        return RPS.SCISSORS
     raise Exception(f"Unknown opponent selection: {line}")
 
 
-def _parse_player_move(line: str) -> RockPaperScissors:
+def _parse_player_move(line: str) -> RPS:
     """X for Rock, Y for Paper, and Z for Scissors."""
     if line[2] == "X":
-        return RockPaperScissors.ROCK
+        return RPS.ROCK
     if line[2] == "Y":
-        return RockPaperScissors.PAPER
+        return RPS.PAPER
     if line[2] == "Z":
-        return RockPaperScissors.SCISSORS
+        return RPS.SCISSORS
     raise Exception(f"Unknown player selection: {line}")
 
 
-def _parse_result_move(opponent: RockPaperScissors,
-                       line: str) -> RockPaperScissors:
+def _parse_result_move(opponent: RPS, line: str) -> RPS:
     """X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win."""
     if line[2] == "X":
         return [
-            option for option in RockPaperScissors
+            option for option in RPS
             if get_rps_score(opponent, option) == RPSResult.LOST
         ][0]
     if line[2] == "Y":
         return [
-            option for option in RockPaperScissors
+            option for option in RPS
             if get_rps_score(opponent, option) == RPSResult.DRAW
         ][0]
     if line[2] == "Z":
         return [
-            option for option in RockPaperScissors
+            option for option in RPS
             if get_rps_score(opponent, option) == RPSResult.WIN
         ][0]
     raise Exception(f"Unknown player selection: {line}")

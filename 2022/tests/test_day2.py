@@ -2,26 +2,20 @@
 """Tests for Advent of Code 2022 day 2."""
 
 import aoc.day2
-from aoc.day2 import RockPaperScissors, Round, RPSResult
+from aoc.day2 import RPS, Round, RPSResult
 
 
 def test_get_rps_score() -> None:
     rules = [
-        Round(RockPaperScissors.ROCK, RockPaperScissors.ROCK, RPSResult.DRAW),
-        Round(RockPaperScissors.ROCK, RockPaperScissors.PAPER, RPSResult.WIN),
-        Round(RockPaperScissors.ROCK, RockPaperScissors.SCISSORS,
-              RPSResult.LOST),
-        Round(RockPaperScissors.PAPER, RockPaperScissors.ROCK, RPSResult.LOST),
-        Round(RockPaperScissors.PAPER, RockPaperScissors.PAPER,
-              RPSResult.DRAW),
-        Round(RockPaperScissors.PAPER, RockPaperScissors.SCISSORS,
-              RPSResult.WIN),
-        Round(RockPaperScissors.SCISSORS, RockPaperScissors.ROCK,
-              RPSResult.WIN),
-        Round(RockPaperScissors.SCISSORS, RockPaperScissors.PAPER,
-              RPSResult.LOST),
-        Round(RockPaperScissors.SCISSORS, RockPaperScissors.SCISSORS,
-              RPSResult.DRAW),
+        Round(RPS.ROCK, RPS.ROCK, RPSResult.DRAW),
+        Round(RPS.ROCK, RPS.PAPER, RPSResult.WIN),
+        Round(RPS.ROCK, RPS.SCISSORS, RPSResult.LOST),
+        Round(RPS.PAPER, RPS.ROCK, RPSResult.LOST),
+        Round(RPS.PAPER, RPS.PAPER, RPSResult.DRAW),
+        Round(RPS.PAPER, RPS.SCISSORS, RPSResult.WIN),
+        Round(RPS.SCISSORS, RPS.ROCK, RPSResult.WIN),
+        Round(RPS.SCISSORS, RPS.PAPER, RPSResult.LOST),
+        Round(RPS.SCISSORS, RPS.SCISSORS, RPSResult.DRAW),
     ]
     for row in rules:
         assert aoc.day2.get_rps_score(row.opponent, row.player) == row.result
@@ -29,15 +23,9 @@ def test_get_rps_score() -> None:
 
 def test_parse_line() -> None:
     lines = [
-        ("A Y",
-         Round(RockPaperScissors.ROCK, RockPaperScissors.PAPER,
-               RPSResult.WIN)),
-        ("B X",
-         Round(RockPaperScissors.PAPER, RockPaperScissors.ROCK,
-               RPSResult.LOST)),
-        ("C Z",
-         Round(RockPaperScissors.SCISSORS, RockPaperScissors.SCISSORS,
-               RPSResult.DRAW)),
+        ("A Y", Round(RPS.ROCK, RPS.PAPER, RPSResult.WIN)),
+        ("B X", Round(RPS.PAPER, RPS.ROCK, RPSResult.LOST)),
+        ("C Z", Round(RPS.SCISSORS, RPS.SCISSORS, RPSResult.DRAW)),
     ]
     for line, r in lines:
         assert aoc.day2.parse_line(line, "part1")

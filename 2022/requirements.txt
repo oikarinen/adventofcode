@@ -4,6 +4,4 @@ mypy
 pep8
 pylint
 pytest
-requests
-types-requests
 yapf

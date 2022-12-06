@@ -26,8 +26,6 @@ def process_result(text: str) -> List[Dict[str, Any]]:
 def main() -> None:
     """Main."""
     print("Day 1")
-    # headers = {"cookie": "session=XXX"}
-    # result = get_file(URL, headers)
     result = get_file("1/input")
     elves = process_result(result)
     print("Part 1:")

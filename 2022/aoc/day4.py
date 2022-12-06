@@ -3,7 +3,7 @@
 
 import re
 from functools import reduce
-from typing import List, Set, NamedTuple
+from typing import List, NamedTuple, Set
 
 import aoc
 from aoc.common.utils import get_file
