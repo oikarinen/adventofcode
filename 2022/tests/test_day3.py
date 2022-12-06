@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tests for Advent of Code 2022 day 2."""
+"""Tests for Advent of Code 2022 day 3."""
 
 from collections import namedtuple
 from functools import reduce

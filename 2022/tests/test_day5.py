@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Tests for Advent of Code 2022 day 5."""
 
-
 import aoc.day5
 
 
@@ -31,6 +30,7 @@ move 1 from 1 to 2"""
     ship_cargo_end = aoc.day5.Cargo.parse_cargo(text=text_end)
     assert ship_cargo, ship_cargo_end
     assert ship_cargo.get_top_row(), "CMZ"
+
 
 def test_cargo9001() -> None:
     """Test second part with examples."""

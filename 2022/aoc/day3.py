@@ -57,17 +57,18 @@ def main() -> None:
     """Main."""
     print("Day 3")
     print("Part 1")
-    rucksacks = get_file("3/input")
-    result = process_result(rucksacks)
+    result = get_file("3/input")
+    rucksacks = process_result(result)
     total1 = reduce(
         add,
         map(lambda x: aoc.day3.Rucksack.get_priority(item=x),
-            map(lambda e: next(iter(e.get_common_items())), result)))
+            map(lambda e: next(iter(e.get_common_items())), rucksacks)))
     print(total1)
     print("Part 2")
     total2 = 0
     for group_rucksacks in [
-            result[i:i + GROUP_SIZE] for i in range(0, len(result), GROUP_SIZE)
+            rucksacks[i:i + GROUP_SIZE]
+            for i in range(0, len(rucksacks), GROUP_SIZE)
     ]:
         common_items = reduce(
             and_, map(lambda x: x.get_all_items(), group_rucksacks))
